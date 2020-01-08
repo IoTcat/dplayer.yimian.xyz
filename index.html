@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Video Player</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/dplayer@1.25.0/dist/DPlayer.min.css">
+	<script type="text/javascript">block_aplayer = true;</script>
+	<script src="https://cdn.yimian.xyz/ushio-js/ushio-head.min.js"></script>
+</head>
+<body>
+
+	<div id="dplayer"></div>
+
+	<script src="https://cdn.yimian.xyz/ushio-js/ushio-footer.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flv.js@1.5.0/dist/flv.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/dplayer@1.25.0/dist/DPlayer.min.js"></script>
+	<script type="text/javascript">
+		var options = {
+    		container: document.getElementById('dplayer'),
+    		theme: '#'+('00000'+ (Math.random()*0x1000000<<0).toString(16)).substr(-6),
+    		logo: 'https://cdn.yimian.xyz/img/logo/logo_white.png',
+    		lang: 'zh-cn',
+    		video: {
+    			pic: 'https://api.yimian.xyz/img/?size=1920x1080'
+    		}/*,
+    		danmaku: {
+		        id: page.params.url,
+		        api: 'https://api.prprpr.me/dplayer/',
+		        maximum: 1000,
+		        addition: [],
+		        user: 'iotcat',
+		        bottom: '15%',
+		        unlimited: true,
+		    }*/
+		};
+		/* if no GET video url */
+		if(Object.keys(page.params).length === 0 || !page.params.hasOwnProperty("url")){
+			options.video.url = 'https://api.yimian.xyz/video?path=404.mp4';
+		}else{
+			options.video.url = page.params.url;
+		}
+		const dp = new DPlayer(options);
+	</script>
+</body>
+</html>
