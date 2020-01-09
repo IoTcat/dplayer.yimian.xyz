@@ -43,6 +43,7 @@
 		if(options.video.url && options.video.url != 'https://api.yimian.xyz/video?path=404.mp4'){
 			if(cookie.get($.md5(options.video.url)) != null){
 				dp.seek(cookie.get($.md5(options.video.url)));
+				dp.notice("已恢复到上次播放位置", 4000);
 			}
 		}
 		/* record seek point */
